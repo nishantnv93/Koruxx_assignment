@@ -1,0 +1,213 @@
+<div ng-controller="updateDataCtrl">
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="d-flex justify-content-around mb-3">
+                            <div class="p-2">
+                                <div class="card" style="width: 36rem;">
+                                    <div class="card-body">
+
+                                        <div ng-controller="updateDataCtrl">
+                                            <button class="btn btn-success" ng-click="enableAddData()"><i
+                                                    class="fa fa-plus" aria-hidden="true"></i></button>
+                                            <div class=" table-responsive-sm">
+                                                <table class="table mb-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Description</th>
+                                                            <th>Web Reference</th>
+                                                            <th>Edit</th>
+                                                            <th>Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-if="addData">
+                                                            <form>
+                                                                <td><input type="text" class="form-control"
+                                                                        ng-model="courseDetailss.name" />
+                                                                </td>
+                                                                <td><input type="text" class="form-control"
+                                                                        ng-model="courseDetailss.description" /></td>
+                                                                <td><input type="text" class="form-control"
+                                                                        ng-model="courseDetailss.webReference" />
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-sm btn-info"
+                                                                        ng-click="saveTable()">Save</button>
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-sm btn-danger"
+                                                                        ng-click="disableForm()"><i
+                                                                            class="fa fa-times"></i></button>
+                                                                </td>
+                                                            </form>
+                                                        </tr>
+                                                        <tr ng-repeat="course in courses">
+                                                            <td><input type="text" ng-model="course.name"
+                                                                    class="form-control"
+                                                                    ng-disabled="!enableEdit[{{$index}}]" />
+                                                            </td>
+                                                            <td><input type="text" ng-model="course.description"
+                                                                    class="form-control"
+                                                                    ng-disabled="!enableEdit[{{$index}}]" />
+                                                            </td>
+                                                            <td><input type="text" ng-model="course.webReference"
+                                                                    class="form-control"
+                                                                    ng-disabled="!enableEdit[{{$index}}]" />
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-sm btn-info"
+                                                                    ng-click="editTable($index)"
+                                                                    ng-hide="enableEdit[{{$index}}]"><i
+                                                                        class="fa fa-pencil-square-o"></i></button>
+                                                                <button type="submit" class="btn btn-sm btn-info"
+                                                                    ng-click="updateTable($index)"
+                                                                    ng-hide="!enableEdit[{{$index}}]"><i
+                                                                        class="fa fa-floppy-o"></i></button>
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-sm btn-danger"
+                                                                    ng-hide="enableEdit[{{$index}}]"
+                                                                    ng-click="deleteTable($index)"><i
+                                                                        class="fa fa-trash"></i></button>
+                                                                <button class="btn btn-sm btn-primary"
+                                                                    ng-click="cancelTable($index)"
+                                                                    ng-hide="!enableEdit[{{$index}}]"><i
+                                                                        class="fa fa-times"></i></button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-2">
+
+                                <div ng-controller="formUpdateCtrl">
+                                    <div class="card" style="width: 42rem;">
+                                        <div class="card-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="name">Name:</label>
+                                                    <input type="text" class="form-control" ng-model="order.name" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="description">Description:</label>
+                                                    <input type="text" class="form-control"
+                                                        ng-model="order.description" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="orderset">Order Set:</label>
+                                                    <input type="text" class="form-control" ng-model="order.orderset" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <button class="btn btn-sm btn-info"
+                                                        ng-click="saveOrder()">Save</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="card" style="width: 42rem;">
+                                        <div class="card-body">
+                                            <button class="btn btn-success" ng-click="enableAddData()"><i
+                                                    class="fa fa-plus" aria-hidden="true"></i></button>
+                                            <div class=" table-responsive-sm">
+                                                <table class="table mb-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Dispaly Name</th>
+                                                            <th>Name</th>
+                                                            <th>UUID</th>
+                                                            <th>Version</th>
+                                                            <th>Edit</th>
+                                                            <th>Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-if="addData">
+                                                            <form>
+                                                                <td><input type="text" class="form-control"
+                                                                        ng-model="customerss.displayName" />
+                                                                </td>
+                                                                <td><input type="text" class="form-control"
+                                                                        ng-model="customerss.name" /></td>
+                                                                <td><input type="text" class="form-control"
+                                                                        ng-model="customerss.uuid" />
+                                                                </td>
+                                                                <td><input type="text" class="form-control"
+                                                                        ng-model="customerss.version" />
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-sm btn-info"
+                                                                        ng-click="saveFormTable()">Save</button>
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-sm btn-danger"
+                                                                        ng-click="disableForm()"><i
+                                                                            class="fa fa-times"></i></button>
+                                                                </td>
+                                                            </form>
+                                                        </tr>
+                                                        <tr ng-repeat="customer in customers">
+                                                            <td><input type="text" ng-model="customer.displayName"
+                                                                    class="form-control"
+                                                                    ng-disabled="!enableCustomerTableEdit[{{$index}}]" />
+                                                            </td>
+                                                            <td><input type="text" ng-model="customer.name"
+                                                                    class="form-control"
+                                                                    ng-disabled="!enableCustomerTableEdit[{{$index}}]" />
+                                                            </td>
+                                                            <td><input type="text" ng-model="customer.uuid"
+                                                                    class="form-control"
+                                                                    ng-disabled="!enableCustomerTableEdit[{{$index}}]" />
+                                                            </td>
+                                                            <td><input type="text" ng-model="customer.version"
+                                                                    class="form-control"
+                                                                    ng-disabled="!enableCustomerTableEdit[{{$index}}]" />
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-sm btn-info"
+                                                                    ng-click="editCustomerTable($index)"
+                                                                    ng-hide="enableCustomerTableEdit[{{$index}}]"><i
+                                                                        class="fa fa-pencil-square-o"></i></button>
+                                                                <button type="submit" class="btn btn-sm btn-info"
+                                                                    ng-click="saveCustomerValues($index)"
+                                                                    ng-hide="!enableCustomerTableEdit[{{$index}}]"><i
+                                                                        class="fa fa-floppy-o"></i></button>
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-sm btn-danger"
+                                                                    ng-hide="enableCustomerTableEdit[{{$index}}]"
+                                                                    ng-click="deleteCustomerTable($index)"><i
+                                                                        class="fa fa-trash"></i></button>
+                                                                <button class="btn btn-sm btn-primary"
+                                                                    ng-click="cancelCustomerTable($index)"
+                                                                    ng-hide="!enableCustomerTableEdit[{{$index}}]"><i
+                                                                        class="fa fa-times"></i></button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
